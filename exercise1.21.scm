@@ -9,5 +9,7 @@
         (else (find-divisor n (+ 1 test-divisor)))))
 (define (divides? n d)
   (= (remainder n d) 0))
-(define (prime? n)
-  (= (smallest-divisor n) n))
+
+(smallest-divisor 199) ;199
+(smallest-divisor 1999) ;1999
+(smallest-divisor 19999) ;7

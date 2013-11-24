@@ -1,0 +1,9 @@
+#lang scheme
+
+;Find three even numbers greater or equal to n.
+
+(define (search-for-primes start end)
+   (if (even? start)
+       (search-for-primes (+ start 1) end)
+       (cond ((< start end) (timed-prime-test start)
+                            (search-for-primes (+ start 2) end)))))
