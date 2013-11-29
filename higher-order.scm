@@ -1,0 +1,22 @@
+#lang scheme
+(define (cube x)
+  (* x x x))
+(define (identity x)
+  x)
+(define (inc x)
+  (+ x 1))
+(define (sum-term a b next term)
+  (if (> a b)
+      0
+      (+ (term a) (sum-term (next a) b next term))))
+(define (sum-integers a b)
+  (sum-term a b inc identity))
+(define (sum-cubes a b)
+  (sum-term a b inc cube))
+(define (pi-sum a b)
+  (define (pi-term a)
+    (/ 1.0 (* a (+ a 2))))
+  (define (pi-next a)
+    (+ a 4))
+  (sum-term a b pi-next pi-term))
+  
