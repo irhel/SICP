@@ -1,0 +1,15 @@
+#lang scheme
+(define (map proc items)
+  (if (null? items)
+      null
+      (cons (proc (car items))
+            (map proc (cdr items)))))
+(define (subsets s)
+  (if (null? s)
+      (list null)
+      (let ((rest (subsets (cdr s))))
+        (append rest (map (lambda (x)
+                            (append (list (car s)) x))
+                          rest)))))
+(subsets '(1))
+(subsets '(2 3 4))
