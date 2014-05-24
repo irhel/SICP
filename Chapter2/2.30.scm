@@ -1,0 +1,18 @@
+#lang scheme
+(define (square-tree-direct tree)
+  (cond ((null? tree) null)
+        ((not (pair? tree)) ((lambda (x) (* x x)) tree))
+        (else (cons (square-tree-direct (car tree))
+                    (square-tree-direct (cdr tree))))))
+(define (map proc items)
+  (if (null? items)
+      null
+      (cons (proc (car items))
+            (map proc (cdr items)))))
+(define (square-tree-map tree)
+  (map (lambda (sub-tree)
+         (if (pair? sub-tree)
+             (square-tree-map sub-tree)
+             (* sub-tree sub-tree))) tree))
+(square-tree-direct '(4 (5 6)))
+(square-tree-map '(5 (8 6 7)))
